@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">test2</string>
+    <string name="title_activity_onboard1">Onboard1</string>
+    <string name="title_activity_onboard2">Onboard2</string>
+    <string name="title_activity_onboard3">Onboard3</string>
+    <string name="title_activity_sign_in">SignIn</string>
 </resources>
