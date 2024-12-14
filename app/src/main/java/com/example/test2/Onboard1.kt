@@ -49,10 +49,10 @@ class Onboard1 : ComponentActivity() {
         }
     }
 
-
     @Composable
     fun Onb1() {
-         val intent = Intent(this@Onboard1, Onboard2::class.java)
+
+        val intent1 = Intent(this@Onboard1, Onboard2::class.java)
         Image(
             painter = painterResource(R.drawable.onboard1),
             contentDescription = "onboard1",
@@ -76,7 +76,7 @@ class Onboard1 : ComponentActivity() {
                 textAlign = TextAlign.Center
             )
             Button(
-                onClick = {startActivity(intent)},
+                onClick = {startActivity(intent1)},
                 shape = RoundedCornerShape(13.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color.White),
                 modifier = Modifier.constrainAs(linkBtn) {

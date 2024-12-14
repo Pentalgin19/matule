@@ -1,5 +1,6 @@
 package com.example.test2
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -35,73 +36,75 @@ class Onboard3 : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Test2Theme {
+                Onb3()
             }
         }
     }
-}
 
-@Composable
-fun Onb3() {
-    Image(
-        painter = painterResource(R.drawable.onboard3),
-        contentDescription = "onboard3",
-        modifier = Modifier.fillMaxSize(),
-        contentScale = ContentScale.Crop
-    )
-    ConstraintLayout(modifier = Modifier.fillMaxSize()) {
-        val linkText = createRef()
-        val linkText2 = createRef()
-        val linkBtn = createRef()
-        Text(
-            "У Вас Есть Сила,\nчтобы",
-            modifier = Modifier.constrainAs(linkText) {
-                bottom.linkTo(linkText2.top, margin = 15.dp)
-                absoluteLeft.linkTo(parent.absoluteLeft)
-                absoluteRight.linkTo(parent.absoluteRight)
-            },
-            fontSize = 34.sp,
-            fontFamily = FontFamily(Font(R.font.raleway_bold)),
-            fontWeight = FontWeight.Thin,
-            color = Color.White,
-            textAlign = TextAlign.Center
+    @Composable
+    fun Onb3() {
+        val intent3 = Intent(this@Onboard3, SignIn::class.java)
+        Image(
+            painter = painterResource(R.drawable.onboard3),
+            contentDescription = "onboard3",
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
         )
-        Text(
-            "В вашей комнате много красивых и\nпривлекательных растений",
-            modifier = Modifier.constrainAs(linkText2) {
-                bottom.linkTo(linkBtn.top, margin = 135.dp)
-                absoluteLeft.linkTo(parent.absoluteLeft)
-                absoluteRight.linkTo(parent.absoluteRight)
-            },
-            fontSize = 16.sp,
-            fontFamily = FontFamily(Font(R.font.raleway)),
-            fontWeight = FontWeight.Normal,
-            color = Color.White,
-            textAlign = TextAlign.Center
-        )
-        Button(
-            onClick = {},
-            shape = RoundedCornerShape(13.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Color.White),
-            modifier = Modifier.constrainAs(linkBtn) {
-                bottom.linkTo(parent.bottom, margin = 40.dp)
-                absoluteLeft.linkTo(parent.absoluteLeft)
-                absoluteRight.linkTo(parent.absoluteRight)
-
-            }.fillMaxWidth().padding(horizontal = 20.dp)
-        ) {
+        ConstraintLayout(modifier = Modifier.fillMaxSize()) {
+            val linkText = createRef()
+            val linkText2 = createRef()
+            val linkBtn = createRef()
             Text(
-                "Далее",
-                fontSize = 14.sp,
-                color = textColor,
+                "У Вас Есть Сила,\nЧтобы",
+                modifier = Modifier.constrainAs(linkText) {
+                    bottom.linkTo(linkText2.top, margin = 15.dp)
+                    absoluteLeft.linkTo(parent.absoluteLeft)
+                    absoluteRight.linkTo(parent.absoluteRight)
+                },
+                fontSize = 34.sp,
                 fontFamily = FontFamily(Font(R.font.raleway)),
-                fontWeight = FontWeight.SemiBold
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
+                textAlign = TextAlign.Center
             )
+            Text(
+                "В вашей комнате много красивых и\nпривлекательных растений",
+                modifier = Modifier.constrainAs(linkText2) {
+                    bottom.linkTo(linkBtn.top, margin = 135.dp)
+                    absoluteLeft.linkTo(parent.absoluteLeft)
+                    absoluteRight.linkTo(parent.absoluteRight)
+                },
+                fontSize = 16.sp,
+                fontFamily = FontFamily(Font(R.font.raleway)),
+                fontWeight = FontWeight.Normal,
+                color = Color.White,
+                textAlign = TextAlign.Center
+            )
+            Button(
+                onClick = { startActivity(intent3) },
+                shape = RoundedCornerShape(13.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+                modifier = Modifier.constrainAs(linkBtn) {
+                    bottom.linkTo(parent.bottom, margin = 40.dp)
+                    absoluteLeft.linkTo(parent.absoluteLeft)
+                    absoluteRight.linkTo(parent.absoluteRight)
+
+                }.fillMaxWidth().padding(horizontal = 20.dp)
+            ) {
+                Text(
+                    "Далее",
+                    fontSize = 14.sp,
+                    color = textColor,
+                    fontFamily = FontFamily(Font(R.font.raleway)),
+                    fontWeight = FontWeight.SemiBold
+                )
+            }
         }
     }
-}
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-private fun Onb3Preview() {
-    Onb3()
+    @Preview(showBackground = true, showSystemUi = true)
+    @Composable
+    private fun Onb3Preview() {
+        Onb3()
+    }
 }

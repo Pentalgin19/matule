@@ -45,18 +45,17 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-
     @Composable
     fun Matule() {
+        val intent0 = Intent(this@MainActivity, Onboard1::class.java)
         val font = FontFamily(Font(R.font.raleway_bold))
         val font1 = FontFamily(Font(R.font.raleway))
         val brush = Brush.verticalGradient(colors = listOf(blue1, blue2))
-        val intent = Intent(this@MainActivity, Onboard1::class.java)
         Row(
             modifier = Modifier
                 .fillMaxSize()
                 .background(brush)
-                .clickable { startActivity(intent)},
+                .clickable { startActivity(intent0)},
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {

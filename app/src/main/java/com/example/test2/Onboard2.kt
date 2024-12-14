@@ -41,10 +41,9 @@ class Onboard2 : ComponentActivity() {
         }
     }
 
-
     @Composable
     fun Onb2() {
-        val intent = Intent(this@Onboard2, Onboard3::class.java)
+        val intent2 = Intent(this@Onboard2, Onboard3::class.java)
         Image(
             painter = painterResource(R.drawable.onboard2),
             contentDescription = "onboard2",
@@ -63,8 +62,8 @@ class Onboard2 : ComponentActivity() {
                     absoluteRight.linkTo(parent.absoluteRight)
                 },
                 fontSize = 34.sp,
-                fontFamily = FontFamily(Font(R.font.raleway_bold)),
-                fontWeight = FontWeight.Thin,
+                fontFamily = FontFamily(Font(R.font.raleway)),
+                fontWeight = FontWeight.Bold,
                 color = Color.White,
                 textAlign = TextAlign.Center
             )
@@ -82,7 +81,7 @@ class Onboard2 : ComponentActivity() {
                 textAlign = TextAlign.Center
             )
             Button(
-                onClick = {startActivity(intent)},
+                onClick = {startActivity(intent2)},
                 shape = RoundedCornerShape(13.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color.White),
                 modifier = Modifier.constrainAs(linkBtn) {

@@ -4,4 +4,6 @@
     <string name="title_activity_onboard2">Onboard2</string>
     <string name="title_activity_onboard3">Onboard3</string>
     <string name="title_activity_sign_in">SignIn</string>
+    <string name="title_activity_register">Register</string>
+    <string name="title_activity_forgot_password">ForgotPassword</string>
 </resources>
