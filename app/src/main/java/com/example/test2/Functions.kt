@@ -70,7 +70,8 @@ class Functions() {
         value: MutableState<String>,
         placehold: String,
         paddingBottom: Int = 0,
-        showEye: Boolean = false
+        showEye: Boolean = false,
+        isEmail: Boolean = false
     ) {
         TextField(
             value = value.value,

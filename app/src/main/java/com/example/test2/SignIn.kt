@@ -42,6 +42,10 @@ class SignIn : ComponentActivity() {
         }
     }
 
+    fun isValidate(value: String) {
+        if (value.contains("@")) {}
+    }
+
     @Composable
     fun Sign() {
         ConstraintLayout() {
@@ -67,7 +71,7 @@ class SignIn : ComponentActivity() {
                     textBtnColor
                 )
                 funs.TextFun("Email", 16, false, textColor)
-                funs.EditTextFun(email, "xyz@gmail.com", 26)
+                funs.EditTextFun(email, "xyz@gmail.com", 26, isEmail = true)
                 funs.TextFun("Пароль", 16, false, textColor)
                 funs.EditTextFun(password, "********", 0, true)
                 Text(
@@ -81,7 +85,7 @@ class SignIn : ComponentActivity() {
                     color = textBtnColor,
                     textAlign = TextAlign.End
                 )
-                funs.Btn("Войти")
+                funs.Btn("Войти", )
             }
             Row(
                 modifier = Modifier
