@@ -1,10 +1,14 @@
 package com.example.test2
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.onFocusedBoundsChanged
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -13,7 +17,10 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
@@ -24,9 +31,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
 import com.example.test2.ui.theme.btnColor
 import com.example.test2.ui.theme.editColor
 import com.example.test2.ui.theme.editTextColor
+import com.example.test2.ui.theme.textColor
 
 class Functions() {
     var isShow: Boolean = true
@@ -45,6 +54,11 @@ class Functions() {
             isShow = true
         }
         return ans
+    }
+
+    fun isValidate(value: String): Boolean {
+        val reg = Regex("^[a-z0-9]+@[a-z0-9]+\\.[a-z]{2,}\$")
+        return reg.matches(value)
     }
 
     @Composable
@@ -73,6 +87,7 @@ class Functions() {
         showEye: Boolean = false,
         isEmail: Boolean = false
     ) {
+        var isValid = remember { mutableStateOf(true)}
         TextField(
             value = value.value,
             onValueChange = {
@@ -89,6 +104,12 @@ class Functions() {
             shape = RoundedCornerShape(15.dp),
             modifier = Modifier
                 .fillMaxWidth()
+                .onFocusChanged {
+                    if (isEmail) {
+                        if (!isValidate(value.value)) isValid.value = false
+                        else isValid.value = true
+                    }
+                }
                 .padding(bottom = paddingBottom.dp),
             placeholder = {
                 Text(placehold, fontSize = 14.sp, fontFamily = font, color = editTextColor)
@@ -111,9 +132,12 @@ class Functions() {
     }
 
     @Composable
-    fun Btn(text: String) {
+    fun Btn(text: String, click: () -> Unit = {}) {
         Button(
-            onClick = {}, shape = RoundedCornerShape(14.dp),
+            onClick = {
+                click()
+            },
+            shape = RoundedCornerShape(14.dp),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 24.dp)

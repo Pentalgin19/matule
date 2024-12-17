@@ -108,11 +108,13 @@ class ForgotPassword : ComponentActivity() {
                 fontFamily = font,
                 textAlign = TextAlign.Center
             )
+            val openDialog = remember { mutableStateOf(false) }
             val email = remember { mutableStateOf("") }
             funs.EditTextFun(email, "xyz@gmail.com", 16)
-            funs.Btn("Отправить", )
+            funs.Btn("Отправить", {
+                openDialog.value = true
+            })
 
-            val openDialog = remember { mutableStateOf(false) }
             if (openDialog.value) {
                 Dialog(
                     onDismissRequest = { openDialog.value = false }
@@ -151,10 +153,6 @@ class ForgotPassword : ComponentActivity() {
                     }
                 }
             }
-            Button(
-                onClick = { openDialog.value = true },
-                modifier = Modifier.fillMaxWidth()
-            ) { Text("piska") }
         }
     }
 

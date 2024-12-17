@@ -58,7 +58,6 @@ class MainActivity : ComponentActivity() {
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.align(Alignment.Top)
                 )
-
                 Text(
                     text = "ME",
                     fontFamily = font1,

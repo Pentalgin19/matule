@@ -42,8 +42,9 @@ class SignIn : ComponentActivity() {
         }
     }
 
-    fun isValidate(value: String) {
-        if (value.contains("@")) {}
+    fun isValidate(value: String){
+        val reg = Regex("^[a-z0-9]+@[a-z0-9]+\\.[a-z]{2,}\$")
+        // reg.matches(value)
     }
 
     @Composable
@@ -85,7 +86,8 @@ class SignIn : ComponentActivity() {
                     color = textBtnColor,
                     textAlign = TextAlign.End
                 )
-                funs.Btn("Войти", )
+                funs.Btn("Войти")
+
             }
             Row(
                 modifier = Modifier
