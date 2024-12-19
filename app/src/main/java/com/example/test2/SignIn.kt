@@ -61,7 +61,7 @@ class SignIn : ComponentActivity() {
                         absoluteLeft.linkTo(parent.absoluteLeft)
                         absoluteRight.linkTo(parent.absoluteRight)
                     }
-            ) {
+            ) {//cringe
                 val email = remember { mutableStateOf("") }
                 val password = remember { mutableStateOf("") }
                 funs.TextFun("Привет!", 32, true, textColor)

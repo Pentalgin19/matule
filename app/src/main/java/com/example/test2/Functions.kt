@@ -92,6 +92,8 @@ class Functions() {
             value = value.value,
             onValueChange = {
                 value.value = it
+                passw = value.value
+
             },
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = editColor,
@@ -116,9 +118,6 @@ class Functions() {
             },
             trailingIcon = {
                 if (showEye) {
-                    if (isShow) {
-                        passw = value.value
-                    }
                     Icon(
                         imageVector = ImageVector.vectorResource(R.drawable.eye),
                         contentDescription = "eye",

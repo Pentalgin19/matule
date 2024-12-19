@@ -76,12 +76,14 @@ class Register : ComponentActivity() {
                     textAlign = TextAlign.Center
                 )
                 val email = remember { mutableStateOf("") }
+                val name = remember { mutableStateOf("") }
+                val passw = remember { mutableStateOf("") }
                 funs.TextFun("Ваше имя", 16, false, textColor)
                 funs.EditTextFun(email, "хххххххх", 16)
                 funs.TextFun("Email", 16, false, textColor)
-                funs.EditTextFun(email, "xyz@gmail.com", 16)
+                funs.EditTextFun(name, "xyz@gmail.com", 16)
                 funs.TextFun("Пароль", 16, false, textColor)
-                funs.EditTextFun(email, "••••••••", 16, true)
+                funs.EditTextFun(passw, "••••••••", 16, true)
                 val check = remember { mutableStateOf(false) }
                 Checkbox(
                     checked = check.value,

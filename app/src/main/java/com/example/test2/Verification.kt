@@ -26,8 +26,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -39,6 +42,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.lifecycle.ViewModel
 import com.example.test2.ui.theme.Test2Theme
 import com.example.test2.ui.theme.editColor
 import com.example.test2.ui.theme.editTextColor
@@ -62,7 +66,9 @@ class Verification : ComponentActivity() {
     fun aaaaaaaaaaa() {}
 
     @Composable
-    fun Verif() {
+    fun Verif(
+
+    ) {
         ConstraintLayout(modifier = Modifier.fillMaxSize()) {
             val link1 = createRef()
             val link2 = createRef()
@@ -89,23 +95,15 @@ class Verification : ComponentActivity() {
                         .align(Alignment.Start)
                         .padding(top = 16.dp, bottom = 20.dp)
                 )
+
                 val code1 = remember { mutableStateOf("") }
                 val code2 = remember { mutableStateOf("") }
                 val code3 = remember { mutableStateOf("") }
                 val code4 = remember { mutableStateOf("") }
                 val code5 = remember { mutableStateOf("") }
                 val code6 = remember { mutableStateOf("") }
-                val tick = remember { mutableStateOf(0) }
-                val timer = object : CountDownTimer(30000, 1000) {
-                    override fun onTick(millisUntilFinished: Long) {
-                        tick.value = (millisUntilFinished / 1000).toInt()
-                    }
-
-                    override fun onFinish() {
-                        tick.value = 0
-                    }
-
-                }.start()
+                val tick = remember { mutableStateOf(30) }
+                timer(tick)
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -264,6 +262,19 @@ class Verification : ComponentActivity() {
     @Composable
     private fun VerifPreview() {
         Verif()
+    }
+
+    fun timer(mutableState: MutableState<Int>){
+        val timer = object : CountDownTimer(30000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                mutableState.value = (millisUntilFinished / 1000).toInt()
+            }
+
+            override fun onFinish() {
+                mutableState.value = 0
+            }
+
+        }.start()
     }
 }
 

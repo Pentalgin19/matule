@@ -13,17 +13,17 @@
         android:theme="@style/Theme.Test2"
         tools:targetApi="31">
         <activity
-            android:name=".SignIn"
+            android:name=".MainActivity"
             android:exported="false"
             android:label="@string/title_activity_verification"
             android:theme="@style/Theme.Test2" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Verification"
             android:exported="false"
             android:label="@string/title_activity_forgot_password"
             android:theme="@style/Theme.Test2" />
         <activity
-            android:name=".Register"
+            android:name=".MainActivity"
             android:exported="false"
             android:label="@string/title_activity_register"
             android:theme="@style/Theme.Test2" />
@@ -48,7 +48,7 @@
             android:label="@string/title_activity_onboard1"
             android:theme="@style/Theme.Test2" />
         <activity
-            android:name=".Verification"
+            android:name=".SignIn"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Test2">
