@@ -27,11 +27,11 @@ import com.example.test2.ui.theme.Test2Theme
 import com.example.test2.ui.theme.editTextColor
 import com.example.test2.ui.theme.textBtnColor
 import com.example.test2.ui.theme.textColor
+import kotlinx.serialization.Serializable
 
 class SignIn : ComponentActivity() {
     val funs = Functions()
     val font = FontFamily(Font(R.font.peninim))
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -71,6 +71,7 @@ class SignIn : ComponentActivity() {
                     true,
                     textBtnColor
                 )
+
                 funs.TextFun("Email", 16, false, textColor)
                 funs.EditTextFun(email, "xyz@gmail.com", 26, isEmail = true)
                 funs.TextFun("Пароль", 16, false, textColor)
@@ -80,7 +81,14 @@ class SignIn : ComponentActivity() {
                     modifier = Modifier
                         .padding(top = 16.dp)
                         .fillMaxWidth()
-                        .clickable { startActivity(Intent(this@SignIn, ForgotPassword::class.java)) },
+                        .clickable {
+                            startActivity(
+                                Intent(
+                                    this@SignIn,
+                                    ForgotPassword::class.java
+                                )
+                            )
+                        },
                     fontFamily = font,
                     fontSize = 12.sp,
                     color = textBtnColor,
@@ -125,4 +133,13 @@ class SignIn : ComponentActivity() {
     private fun SignP() {
         Sign()
     }
+
+}
+
+@Serializable
+data class User {
+    val id: Int,
+    val email: String,
+    val Name: String,
+    val password: String
 }
