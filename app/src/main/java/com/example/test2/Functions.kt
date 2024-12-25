@@ -1,14 +1,10 @@
 package com.example.test2
 
-import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.onFocusedBoundsChanged
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -31,11 +27,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.Dialog
 import com.example.test2.ui.theme.btnColor
 import com.example.test2.ui.theme.editColor
 import com.example.test2.ui.theme.editTextColor
-import com.example.test2.ui.theme.textColor
 
 class Functions() {
     var isShow: Boolean = true
@@ -46,7 +40,7 @@ class Functions() {
         var ans = ""
         if (isShow) {
             for (i in 0..value.count() - 1) {
-                ans = ans + "*"
+                ans += "*"
             }
             isShow = false
         } else {

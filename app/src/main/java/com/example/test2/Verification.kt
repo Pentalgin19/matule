@@ -1,13 +1,12 @@
 package com.example.test2
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,20 +16,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.windowInsetsEndWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -42,14 +36,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.lifecycle.ViewModel
 import com.example.test2.ui.theme.Test2Theme
 import com.example.test2.ui.theme.editColor
 import com.example.test2.ui.theme.editTextColor
 import com.example.test2.ui.theme.stroke
 import com.example.test2.ui.theme.textBtnColor
 import com.example.test2.ui.theme.textColor
-import java.time.format.TextStyle
 
 class Verification : ComponentActivity() {
     val funs = Functions()
@@ -63,23 +55,28 @@ class Verification : ComponentActivity() {
             }
         }
     }
+
     fun aaaaaaaaaaa() {}
 
+    @SuppressLint("RememberReturnType")
     @Composable
     fun Verif(
 
     ) {
         ConstraintLayout(modifier = Modifier.fillMaxSize()) {
             val link1 = createRef()
-            val link2 = createRef()
+            val link3 = createRef()
+            val link4 = createRef()
+            val tick = remember { mutableStateOf(30) }
             Column(modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 20.dp, vertical = 100.dp)
+                .fillMaxWidth()
+                .padding(top = 100.dp, start = 20.dp, end = 20.dp)
                 .constrainAs(link1) {
                     top.linkTo(parent.top)
                     absoluteLeft.linkTo(parent.absoluteLeft)
                     absoluteRight.linkTo(parent.absoluteRight)
-                }) {
+                })
+            {
                 funs.TextFun("ОТР Проверка", 32, true, textColor)
                 funs.TextFun(
                     "Пожалуйста, Проверьте Свою\nЭлектронную Почту, Чтобы Увидеть Код\nПодтверждения",
@@ -102,8 +99,7 @@ class Verification : ComponentActivity() {
                 val code4 = remember { mutableStateOf("") }
                 val code5 = remember { mutableStateOf("") }
                 val code6 = remember { mutableStateOf("") }
-                val tick = remember { mutableStateOf(30) }
-                timer(tick)
+                remember { timer(tick) }
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -232,29 +228,43 @@ class Verification : ComponentActivity() {
                         singleLine = true
                     )
                 }
-                Text(
-                    "Отправить заново",
-                    fontFamily = font,
-                    fontSize = 12.sp,
-                    modifier = if (tick.value != 0){
-                        Modifier
-                            .align(Alignment.Start)
-                            .padding(top = 20.dp)
-                    }else{
-                        Modifier
-                            .align(Alignment.Start)
-                            .padding(top = 20.dp)
-                            .clickable { aaaaaaaaaaa() }
-                    }
-
-                )
-                Text("00:${tick.value}", modifier = Modifier.padding(top = 100.dp))
-//                Text("Отправить заново",
-//                    modifier = Modifier.clickable {  },
-//                    fontFamily = font,
-//                    textSize = 12.sp,
-//                    color = textBtnColor)
             }
+            Text(
+                "Отправить заново",
+                fontFamily = font,
+                fontSize = 12.sp,
+                color = if (tick.value != 0) textBtnColor else Color.Black,
+                modifier = if (tick.value != 0) {
+                    Modifier.constrainAs(link3) {
+                        top.linkTo(link1.bottom, margin = 20.dp)
+                        absoluteLeft.linkTo(parent.absoluteLeft, margin = 20.dp)
+                    }
+                } else {
+                    Modifier
+                        .constrainAs(link3) {
+                            top.linkTo(link1.bottom, margin = 20.dp)
+                            absoluteLeft.linkTo(parent.absoluteLeft, margin = 20.dp)
+                        }
+                        .clickable { timer(tick) }
+                }
+            )
+            Text(
+                text = if (tick.value >= 10) {
+                    "00:${tick.value}"
+                } else {
+                    "00:0${tick.value}"
+                },
+                modifier = Modifier.constrainAs(link4) {
+                    top.linkTo(link1.bottom, margin = 20.dp)
+                    absoluteRight.linkTo(parent.absoluteRight, margin = 20.dp)
+                },
+
+                fontFamily = font,
+                fontSize = 12.sp,
+                color = textBtnColor
+            )
+
+
         }
     }
 
@@ -264,7 +274,7 @@ class Verification : ComponentActivity() {
         Verif()
     }
 
-    fun timer(mutableState: MutableState<Int>){
+    fun timer(mutableState: MutableState<Int>) {
         val timer = object : CountDownTimer(30000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 mutableState.value = (millisUntilFinished / 1000).toInt()

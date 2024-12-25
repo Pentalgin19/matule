@@ -47,8 +47,16 @@ class SignIn : ComponentActivity() {
         // reg.matches(value)
     }
 
+    @Serializable
+    data class User (
+        val id: Int,
+        val email: String,
+        val password: String
+    )
+
     @Composable
     fun Sign() {
+//        val user = remember { mutableStateOf(User)}
         ConstraintLayout() {
             val link1 = createRef()
             val link2 = createRef()
@@ -133,13 +141,5 @@ class SignIn : ComponentActivity() {
     private fun SignP() {
         Sign()
     }
-
 }
 
-@Serializable
-data class User {
-    val id: Int,
-    val email: String,
-    val Name: String,
-    val password: String
-}
