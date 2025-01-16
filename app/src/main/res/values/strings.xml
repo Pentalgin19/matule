@@ -7,4 +7,9 @@
     <string name="title_activity_register">Register</string>
     <string name="title_activity_forgot_password">ForgotPassword</string>
     <string name="title_activity_verification">Verification</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_aaa">aaa</string>
 </resources>
